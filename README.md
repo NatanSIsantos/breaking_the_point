@@ -19,7 +19,7 @@
   **Contact Emails:**
   ><ol>
   ><li>fpl.snf19@uea.edu.br
-  ><li>jvc.snf19@uea.edu.br
+  ><li>jvdsc.snf19@uea.edu.br
   ><li>lmc.snf19@uea.edu.br
   ><li>nsds.snf19@uea.edu.br
   ><li>wdsg.snf19@uea.edu.br

@@ -17,6 +17,17 @@ def create_screen():  # função que cria a tela
 
 
 def menu():
+
+    # Parâmetros da seleção
+    selection = turtle.Turtle("square")
+    selection.speed(0)
+    selection.turtlesize(1.5, 6)
+    selection.color('pink')
+    selection.fillcolor('')
+    selection.penup()
+    selection.sety(25)
+
+    # Configurando seleção por teclado
     def selection_up():
         selection.sety(25)
         # selection_sound()
@@ -34,6 +45,7 @@ def menu():
             screen.clear()
             # Aqui colocaremos a tela para qual ele vai ex: Tela()
 
+    # Esperando que o usuário aperte uma tecla
     screen.onkeypress(selection_mode, 'Return')
     screen.onkeypress(selection_up, 'Up')
     screen.onkeypress(selection_down, 'Down')
@@ -59,7 +71,7 @@ def menu():
     mode.hideturtle()
     mode.goto(0, 50)
     mode.write("Opções", align="center", font=(
-        "Press Start 2P", 16, "normal"))
+        "Press Start 2P", 8, "normal"))
 
     mode = turtle.Turtle("square")
     mode.speed(0)
@@ -78,12 +90,3 @@ def menu():
     mode.goto(0, -30)
     mode.write("PLACAR", align="center", font=(
         "Press Start 2P", 16, "normal"))
-
-    # Parâmetros da seleção
-    selection = turtle.Turtle("square")
-    selection.speed(0)
-    selection.turtlesize(1.5, 6)
-    selection.color('pink')
-    selection.fillcolor('')
-    selection.penup()
-    selection.sety(25)

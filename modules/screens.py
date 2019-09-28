@@ -1,5 +1,5 @@
 import turtle
-import modules.objects
+import modules.game
 '''Este é o arquivo onde são feitas as configurações envolvendo as transições
 de telas, navegação de menu e derivados'''
 
@@ -10,7 +10,7 @@ def create_screen():  # função que cria a tela
     screen = turtle.Screen()
     screen.title("Breaking the Point")
     screen.bgcolor("black")
-    screen.setup(720, 1080)
+    screen.setup(720, 720)
     screen.tracer(0)
     menu()
     while True:
@@ -18,7 +18,7 @@ def create_screen():  # função que cria a tela
 
 
 def on_game():  # tela chamada quando usuário escolher jogar
-    modules.objects.draw_objects()
+        modules.game.draw_objects()
 
 
 def on_score():  # tela chamada quando usuário escolher ver placar

@@ -16,7 +16,7 @@ def draw_objects():
     player1.turtlesize(player_height, player_width)
     player1.color("cyan")
     player1.penup()
-    player1.sety(-350)
+    player1.sety(-300)
 
     # desenhando a bola
     ball = turtle.Turtle("circle")

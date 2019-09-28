@@ -12,3 +12,5 @@ def life():
     heart.hideturtle()
     heart.goto(-300, 310)
     heart.write("3 lifes", align="center", font=("Press Start 2P", 24, "normal"))
+
+    

@@ -1,4 +1,5 @@
 import turtle
+import modules.objects
 '''Este é o arquivo onde são feitas as configurações envolvendo as transições
 de telas, navegação de menu e derivados'''
 
@@ -16,7 +17,15 @@ def create_screen():  # função que cria a tela
         screen.update()
 
 
-def menu():
+def on_game():  # tela chamada quando usuário escolher jogar
+    modules.objects.draw_objects()
+
+
+def on_score():  # tela chamada quando usuário escolher ver placar
+    pass
+
+
+def menu():  # função que cria o menu principal
 
     # Parâmetros da seleção
     selection = turtle.Turtle("square")
@@ -39,11 +48,11 @@ def menu():
     def selection_mode():
         if (selection.ycor() == 25):
             screen.clear()
-            # Aqui colocaremos a tela para qual ele vai ex: Tela()
+            on_game()
 
         if (selection.ycor() == -15):
             screen.clear()
-            # Aqui colocaremos a tela para qual ele vai ex: Tela()
+            on_score()
 
     # Esperando que o usuário aperte uma tecla
     screen.onkeypress(selection_mode, 'Return')

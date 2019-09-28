@@ -19,6 +19,7 @@ def create_screen():  # função que cria a tela
 
 def on_game():  # tela chamada quando usuário escolher jogar
         modules.game.draw_objects()
+        
 
 
 def on_score():  # tela chamada quando usuário escolher ver placar

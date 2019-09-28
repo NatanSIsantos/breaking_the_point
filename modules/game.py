@@ -1,9 +1,11 @@
 import turtle
+import modules.targets
 '''Este é o arquivo onde são configurados os objetos diretamente interagíveis
 pelo player, como bola e raquete, além de suas colisões e parâmetros'''
 
 
 def draw_objects():
+    modules.targets.life()
 
     def pong_sound():
         pass

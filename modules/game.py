@@ -97,7 +97,7 @@ def draw_objects():
             elif (ball.dy < 0):
                 ball.dy -= 0.01
 
-            # divisão de setores
+            '''# divisão de setores
             if (ball.xcor() <= player1.xcor() + 5 and
                     ball.xcor() >= player1.xcor() - 5):
                 if (ball.dx > 0):
@@ -160,13 +160,13 @@ def draw_objects():
                     ball.dy = ball.dx + 0.05
                 elif (ball.dy < 0):
                     ball.dy = -ball.dx - 0.05
-            pong_sound()
+            pong_sound()'''
 
         # colisão do player com as paredes
-        if (player1.xcor() > 360):
-            player1.setx(360)
-        if (player1.xcor() < -3680):
-            player1.setx(-360)
+        if (player1.xcor() > 300):
+            player1.setx(300)
+        if (player1.xcor() < -300):
+            player1.setx(-300)
 
         # atualização da tela
         screen.update()

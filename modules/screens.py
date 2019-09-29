@@ -1,5 +1,5 @@
 import turtle
-import modules.game
+from modules import game, score
 '''Este é o arquivo onde são feitas as configurações envolvendo as transições
 de telas, navegação de menu e derivados'''
 
@@ -18,12 +18,11 @@ def create_screen():  # função que cria a tela
 
 
 def on_game():  # tela chamada quando usuário escolher jogar
-        modules.game.draw_objects()
-        
+    game.draw_objects()
 
 
 def on_score():  # tela chamada quando usuário escolher ver placar
-    pass
+    score.show_score()
 
 
 def menu():  # função que cria o menu principal

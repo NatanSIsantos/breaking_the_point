@@ -1,4 +1,5 @@
 import turtle
+import time
 from modules import targets
 '''Este é o arquivo onde são configurados os objetos diretamente interagíveis
 pelo player, como bola e raquete, além de suas colisões e parâmetros'''
@@ -78,7 +79,9 @@ def draw_objects():
     screen.onkeypress(p_right, 'd')
     screen.onkeypress(p_left, 'a')
     '''screen.onkeypress(restart_game, "space")'''
-    
+
+    targets.matrix_generator()
+    targets.block_printer()
 
     while True:
 

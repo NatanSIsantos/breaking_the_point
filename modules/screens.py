@@ -38,11 +38,15 @@ def menu():  # função que cria o menu principal
 
     # Configurando seleção por teclado
     def selection_up():
-        selection.sety(25)
+        if selection.ycor() >= 25:
+            selection.sety(-95)
+        selection.sety(selection.ycor() + 40)
         # selection_sound()
 
     def selection_down():
-        selection.sety(-15)
+        if selection.ycor() <= -55:
+            selection.sety(65)
+        selection.sety(selection.ycor() - 40)
         # selection_sound()
 
     def selection_mode():
@@ -53,6 +57,9 @@ def menu():  # função que cria o menu principal
         if (selection.ycor() == -15):
             screen.clear()
             on_score()
+
+        if (selection.ycor() == -55):
+            screen.clear()
 
     # Esperando que o usuário aperte uma tecla
     screen.onkeypress(selection_mode, 'Return')
@@ -73,14 +80,6 @@ def menu():  # função que cria o menu principal
         " >POINT<\n", align="center", font=("Press Start 2P", 24, "normal"))
 
     # Tela de seleção
-    mode = turtle.Turtle("square")
-    mode.speed(0)
-    mode.color("white")
-    mode.penup()
-    mode.hideturtle()
-    mode.goto(0, 50)
-    mode.write("Opções", align="center", font=(
-        "Press Start 2P", 8, "normal"))
 
     mode = turtle.Turtle("square")
     mode.speed(0)
@@ -98,4 +97,13 @@ def menu():  # função que cria o menu principal
     mode.hideturtle()
     mode.goto(0, -30)
     mode.write("PLACAR", align="center", font=(
+        "Press Start 2P", 16, "normal"))
+
+    mode = turtle.Turtle("square")
+    mode.speed(0)
+    mode.color("gray")
+    mode.penup()
+    mode.hideturtle()
+    mode.goto(0, -70)
+    mode.write("OPÇÕES", align="center", font=(
         "Press Start 2P", 16, "normal"))

@@ -108,7 +108,6 @@ def draw_objects():
                 ball.ycor() > -331):
             ball.dy *= -1
 
-
             '''# divisão de setores
             if (ball.xcor() <= player1.xcor() + 5 and
                     ball.xcor() >= player1.xcor() - 5):

@@ -25,6 +25,7 @@ def game_over():  # condição de derrota
         heart.write("{} lifes".format(life), align="center", font=(
             "Press Start 2P", 24, "normal"))
 
+
 def counter():
     counter = turtle.Turtle("square")
     counter.speed(0)

@@ -1,11 +1,23 @@
 import turtle
-import modules.targets
+from modules import targets
 '''Este é o arquivo onde são configurados os objetos diretamente interagíveis
 pelo player, como bola e raquete, além de suas colisões e parâmetros'''
 
 
 def draw_objects():
-    modules.targets.life()
+    #vidas
+    life = 3
+
+    #display de vidas
+    heart = turtle.Turtle()
+    heart.speed(0)
+    heart.shape("square")
+    heart.color("red")
+    heart.penup()
+    heart.hideturtle()
+    heart.goto(-300, 310)
+    heart.write("3 lifes", align="center", font=(
+        "Press Start 2P", 24, "normal"))
 
     def pong_sound():
         pass
@@ -168,5 +180,12 @@ def draw_objects():
         if (player1.xcor() < -300):
             player1.setx(-300)
 
+        if ball.ycor < -330:
+            life -= 1
+            heart.write("{} lifes".format(life), align="center", font=(
+                "Press Start 2P", 24, "normal"))
+
+        targets.game_over()
+        
         # atualização da tela
         screen.update()

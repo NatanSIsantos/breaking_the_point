@@ -6,7 +6,6 @@ pontuações, vida e afins'''
 
 screen = turtle.Screen()
 
-
 def matrix_generator():
     blocks = open('files/blocks_matrix.txt', 'w')
     lin = 5  # núúmero de linhas
@@ -60,25 +59,25 @@ def block_printer():
             collum += 90
             if collum >= 720:
                 collum = 0
-                line += 90
+                line += 9
     blocks.close()
 
-def game_over():
-    loser = turtle.Turtle()
-    loser.shape("square")
-    loser.shapesize(stretch_wid=10, stretch_len=5)
-    loser.speed(0)
-    loser.color("red")
-    loser.penup()
-    loser.hideturtle()
-    loser.goto(0, 0)
+loser = turtle.Turtle()
+loser.shape("square")
+loser.shapesize(stretch_wid=10, stretch_len=5)
+loser.speed(0)
+loser.color("red")
+loser.penup()
+loser.hideturtle()
+loser.goto(0, 0)
 
+def game_over():
     loser.write(
         "GAME\n" +
         "OVER\n", align="center", font=("Press Start 2P", 24, "normal"))
-    screen.textinput("GAME OVER","Press [SPACE] to restart")
-    screen.listen()
-
+    loser.clear()
+    
+   
 
 def counter():
     counter = turtle.Turtle("square")

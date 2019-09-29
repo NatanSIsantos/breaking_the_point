@@ -6,7 +6,6 @@ pelo player, como bola e raquete, além de suas colisões e parâmetros'''
 
 
 def draw_objects():
-    #vidas
     life = 3
 
     heart = turtle.Turtle()
@@ -53,14 +52,17 @@ def draw_objects():
     p_speed = 42
 
     #reiniciar o jogo
-    #EM MANUTENÇÂO
-    '''def restart_game():
-        player1.sety(-330)
-        heart.clear()
-        global life
-        life = 3
-        heart.write("{} lifes".format(life), align="left", font=(
-                "Press Start 2P", 24, "normal"))'''
+    #EM MANUTENÇÃO
+    #def restart():
+    #    player1.sety(-330)
+    #    ball.goto(0, 0)
+    #    ball.dy = 0.2
+    #    heart.clear()
+    #   global life
+    #    life = 3
+    #    heart.write("{} lifes".format(life), align="left", font=(
+    #            "Press Start 2P", 24, "normal"))
+        
 
     # Movimentação do player
 
@@ -75,10 +77,11 @@ def draw_objects():
         player1.setx(x)
 
     # Recebendo a entrada de movimentos dos pjs
-    screen.listen()
     screen.onkeypress(p_right, 'd')
     screen.onkeypress(p_left, 'a')
-    '''screen.onkeypress(restart_game, "space")'''
+    #screen.onkeypress(restart, 'm')
+    screen.listen()
+    
 
     targets.matrix_generator()
     targets.block_printer()
@@ -106,6 +109,10 @@ def draw_objects():
             if life == 0:
                 targets.game_over()
                 time.sleep(1)
+                heart.clear()
+                life = 3
+                heart.write("{} lifes".format(life), align="left", font=(
+                    "Press Start 2P", 24, "normal"))
             targets.counter()
             pong_sound()
 

@@ -5,19 +5,21 @@ pelo player, como bola e raquete, além de suas colisões e parâmetros'''
 
 
 def draw_objects():
-    #vidas
-    life = 3
-
-    #display de vidas
-    heart = turtle.Turtle()
-    heart.speed(0)
-    heart.shape("square")
-    heart.color("red")
-    heart.penup()
-    heart.hideturtle()
-    heart.goto(-300, 310)
-    heart.write("3 lifes", align="center", font=(
-        "Press Start 2P", 24, "normal"))
+    # EM REPARO
+    # #vidas
+    # life = 3
+    #
+    # #display de vidas
+    # heart = turtle.Turtle()
+    # heart.speed(0)
+    # heart.shape("square")
+    # heart.color("red")
+    # heart.penup()
+    # heart.hideturtle()
+    # heart.goto(-300, 310)
+    # heart.write("3 lifes", align="center", font=(
+    #     "Press Start 2P", 24, "normal"))
+    # EM REPARO
 
     def pong_sound():
         pass
@@ -38,7 +40,7 @@ def draw_objects():
     ball.dy = 0.2
 
     # variáveis utilizadas no player
-    player_height = 1
+    player_height = 0.5
     player_width = 5
 
     # parâmetros do p1ayer
@@ -83,8 +85,9 @@ def draw_objects():
 
         # colisão da bola com parede inferior
         if (ball.ycor() <= -360):
-            ball.sety(-360)
-            ball.dy *= -1
+            ball.sety(0)
+            ball.setx(0)
+            targets.counter()
             pong_sound()
 
         # colisão da bola com parede direita
@@ -100,14 +103,11 @@ def draw_objects():
             pong_sound()
 
         # colisão da bola com o player
-        if (ball.ycor() < -330 and ball.ycor() < player1.xcor() - 65 and
+        if (ball.ycor() < -330 and ball.xcor() < player1.xcor() + 65 and
                 ball.xcor() > player1.xcor() - 65 and
                 ball.ycor() > -331):
             ball.dy *= -1
-            if (ball.dy > 0):
-                ball.dy += 0.01
-            elif (ball.dy < 0):
-                ball.dy -= 0.01
+
 
             '''# divisão de setores
             if (ball.xcor() <= player1.xcor() + 5 and
@@ -180,12 +180,14 @@ def draw_objects():
         if (player1.xcor() < -300):
             player1.setx(-300)
 
-        if ball.ycor < -330:
-            life -= 1
-            heart.write("{} lifes".format(life), align="center", font=(
-                "Press Start 2P", 24, "normal"))
+        # EM REPARO
+        # if ball.ycor < -330:
+        #     life -= 1
+        #     heart.write("{} lifes".format(life), align="center", font=(
+        #         "Press Start 2P", 24, "normal"))
+        #
+        # targets.game_over()
+        # EM REPARO
 
-        targets.game_over()
-        
         # atualização da tela
         screen.update()

@@ -129,9 +129,9 @@ def draw_objects():
             pong_sound()
 
         # colisão da bola com o player
-        if (ball.ycor() < -330 and ball.xcor() < player1.xcor() + 65 and
+        if (ball.ycor() < -320 and ball.xcor() < player1.xcor() + 65 and
                 ball.xcor() > player1.xcor() - 65 and
-                ball.ycor() > -331):
+                ball.ycor() > -321):
             ball.dy *= -1
 
             '''# divisão de setores

@@ -1,5 +1,7 @@
 import turtle
 import time
+import wave
+import simpleaudio as sa
 from modules import targets, screens
 '''Este é o arquivo onde são configurados os objetos diretamente interagíveis
 pelo player, como bola e raquete, além de suas colisões e parâmetros'''
@@ -19,7 +21,12 @@ def draw_objects():
         "Press Start 2P", 24, "normal"))
 
     def pong_sound():
-        pass
+        wave_obj = sa.WaveObject.from_wave_file("files/pong.wav")
+        wave_obj.play()
+
+    # tocando música
+    music_obj = sa.WaveObject.from_wave_file("files/breaking_the_silence.wav")
+    musica = music_obj.play()
 
     screen = turtle.Screen()
     screen.title("breaking_the_point")
@@ -61,7 +68,7 @@ def draw_objects():
         life = 3
         heart.write("{} lifes".format(life), align="left", font=(
                 "Press Start 2P", 24, "normal"))
-        
+
     # Movimentação do player
 
     def p_right():
@@ -79,12 +86,14 @@ def draw_objects():
     screen.onkeypress(p_left, 'a')
     screen.onkeypress(restart, 'space')
     screen.listen()
-    
+
 
     targets.matrix_generator()
     targets.block_printer()
 
     while True:
+        if musica.is_playing() is False:
+            musica = music_obj.play()
 
         # movimentação da bola
         ball.setx(ball.xcor() + ball.dx)
@@ -112,7 +121,7 @@ def draw_objects():
                 heart.write("{} lifes".format(life), align="left", font=(
                     "Press Start 2P", 24, "normal"))
                 #screens.menu()
-            else:        
+            else:
                 targets.counter()
                 pong_sound()
 
@@ -134,7 +143,7 @@ def draw_objects():
                 ball.ycor() > -321):
             ball.dy *= -1
 
-            '''# divisão de setores
+            # divisão de setores
             if (ball.xcor() <= player1.xcor() + 5 and
                     ball.xcor() >= player1.xcor() - 5):
                 if (ball.dx > 0):
@@ -197,7 +206,7 @@ def draw_objects():
                     ball.dy = ball.dx + 0.05
                 elif (ball.dy < 0):
                     ball.dy = -ball.dx - 0.05
-            pong_sound()'''
+            pong_sound()
 
         # colisão do player com as paredes
         if (player1.xcor() > 300):

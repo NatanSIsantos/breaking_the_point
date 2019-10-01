@@ -6,10 +6,11 @@ pontuações, vida e afins'''
 
 screen = turtle.Screen()
 
+
 def matrix_generator():
     blocks = open('files/blocks_matrix.txt', 'w')
     lin = 60  # núúmero de linhas
-    col = 1 # núúmero de colunas
+    col = 1  # núúmero de colunas
     for _ in range(lin):
         for _ in range(col):
             number = randint(0, 6)
@@ -65,6 +66,7 @@ def block_printer():
                 line -= 90
     blocks.close()
 
+
 loser = turtle.Turtle()
 loser.shape("square")
 loser.shapesize(stretch_wid=10, stretch_len=5)
@@ -73,6 +75,7 @@ loser.color("red")
 loser.penup()
 loser.hideturtle()
 loser.goto(0, 0)
+
 
 def game_over():
     loser.write(

@@ -8,9 +8,12 @@ from modules import targets, screens
 pelo player, como bola e raquete, além de suas colisões e parâmetros'''
 
 star = turtle.Turtle()
+
+
 def moveToRandomLocation():
     star.penup()
-    star.setpos( randint(-360, 360) , randint(-360, 360) )
+    star.setpos(randint(-360, 360), randint(-360, 360))
+
 
 def drawStar(starSize, starColour):
     star.color(starColour)
@@ -21,6 +24,7 @@ def drawStar(starSize, starColour):
         star.forward(starSize)
     star.end_fill()
     star.penup()
+
 
 def draw_objects():
     life = 3
@@ -53,7 +57,7 @@ def draw_objects():
     for __ in range(60):
         moveToRandomLocation()
         turtle.Turtle().penup()
-        drawStar( randint(2,6) , "#ccffcc")
+        drawStar(randint(2, 6), "#ccffcc")
     turtle.Turtle().hideturtle()
 
     # desenhando a bola
@@ -89,7 +93,7 @@ def draw_objects():
         global life
         life = 3
         heart.write("{} lifes".format(life), align="left", font=(
-                "Press Start 2P", 24, "normal"))
+            "Press Start 2P", 24, "normal"))
 
     # Movimentação do player
 
@@ -142,7 +146,7 @@ def draw_objects():
                 life = 3
                 heart.write("{} lifes".format(life), align="left", font=(
                     "Press Start 2P", 24, "normal"))
-                #screens.menu()
+                # screens.menu()
             else:
                 targets.counter()
                 pong_sound()

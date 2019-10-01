@@ -77,7 +77,8 @@ loser.goto(0, 0)
 def game_over():
     loser.write(
         "GAME\n" +
-        "OVER\n", align="center", font=("Press Start 2P", 24, "normal"))
+        "OVER\n" + 
+        "Press [SPACE] to restart", align="center", font=("Press Start 2P", 24, "normal"))
     loser.clear()
     
    

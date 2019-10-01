@@ -1,6 +1,6 @@
 import turtle
 import time
-from modules import targets
+from modules import targets, screens
 '''Este é o arquivo onde são configurados os objetos diretamente interagíveis
 pelo player, como bola e raquete, além de suas colisões e parâmetros'''
 
@@ -33,8 +33,8 @@ def draw_objects():
     ball.color("orange")
     ball.penup()
     ball.goto(0, 0)
-    ball.dx = 0.2
-    ball.dy = 0.2
+    ball.dx = 0.5
+    ball.dy = 0.5
 
     # variáveis utilizadas no player
     player_height = 0.5
@@ -52,18 +52,16 @@ def draw_objects():
     p_speed = 42
 
     #reiniciar o jogo
-    #EM MANUTENÇÃO
-    #def restart():
-    #    player1.sety(-330)
-    #    ball.goto(0, 0)
-    #    ball.dy = 0.2
-    #    heart.clear()
-    #   global life
-    #    life = 3
-    #    heart.write("{} lifes".format(life), align="left", font=(
-    #            "Press Start 2P", 24, "normal"))
+    def restart():
+        player1.sety(-330)
+        ball.goto(0, 0)
+        ball.dy = 0.2
+        heart.clear()
+        global life
+        life = 3
+        heart.write("{} lifes".format(life), align="left", font=(
+                "Press Start 2P", 24, "normal"))
         
-
     # Movimentação do player
 
     def p_right():
@@ -79,7 +77,7 @@ def draw_objects():
     # Recebendo a entrada de movimentos dos pjs
     screen.onkeypress(p_right, 'd')
     screen.onkeypress(p_left, 'a')
-    #screen.onkeypress(restart, 'm')
+    screen.onkeypress(restart, 'space')
     screen.listen()
     
 
@@ -113,8 +111,10 @@ def draw_objects():
                 life = 3
                 heart.write("{} lifes".format(life), align="left", font=(
                     "Press Start 2P", 24, "normal"))
-            targets.counter()
-            pong_sound()
+                #screens.menu()
+            else:        
+                targets.counter()
+                pong_sound()
 
         # colisão da bola com parede direita
         if (ball.xcor() > 360):

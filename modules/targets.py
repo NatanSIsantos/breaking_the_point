@@ -8,7 +8,7 @@ screen = turtle.Screen()
 
 def matrix_generator():
     blocks = open('files/blocks_matrix.txt', 'w')
-    lin = 40  # núúmero de linhas
+    lin = 60  # núúmero de linhas
     col = 1 # núúmero de colunas
     for _ in range(lin):
         for _ in range(col):
@@ -39,19 +39,19 @@ def block_printer():
                 block.penup()
                 block.hideturtle()
             elif __ == '1':
-                block.color("#669933")
+                block.color("#669933")  # Dark Green Block
                 block.penup()
             elif __ == '2':
-                block.color("#ccff99")
+                block.color("#ccff99")  # Light Green Block
                 block.penup()
             elif __ == '3':
-                block.color("#ffcc99")
+                block.color("#ffcc99")  # Orange Block
                 block.penup()
             elif __ == '4':
-                block.color("#ff9999")
+                block.color("#ff9999")  # Red Block
                 block.penup()
             elif __ == '5':
-                block.color("#cccccc")
+                block.color("#999999")  # Gray Block
                 block.penup()
             elif __ == '6':
                 block.color()

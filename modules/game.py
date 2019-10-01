@@ -129,7 +129,7 @@ def draw_objects():
 
         # colisão da bola com parede inferior
         if (ball.ycor() <= -360):
-            ball.sety(0)
+            ball.sety(-45)
             ball.setx(0)
             life -= 1
             heart.clear()

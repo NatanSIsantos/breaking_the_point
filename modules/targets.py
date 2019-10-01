@@ -39,19 +39,19 @@ def block_printer():
                 block.penup()
                 block.hideturtle()
             elif __ == '1':
-                block.color("lightgreen")
+                block.color("#669933")
                 block.penup()
             elif __ == '2':
-                block.color("blue")
+                block.color("#ccff99")
                 block.penup()
             elif __ == '3':
-                block.color("orange")
+                block.color("#ffcc99")
                 block.penup()
             elif __ == '4':
-                block.color("red")
+                block.color("#ff9999")
                 block.penup()
             elif __ == '5':
-                block.color("purple")
+                block.color("#cccccc")
                 block.penup()
             elif __ == '6':
                 block.color()
@@ -77,11 +77,10 @@ loser.goto(0, 0)
 def game_over():
     loser.write(
         "GAME\n" +
-        "OVER\n" + 
+        "OVER\n" +
         "Press [SPACE] to restart", align="center", font=("Press Start 2P", 24, "normal"))
     loser.clear()
-    
-   
+
 
 def counter():
     counter = turtle.Turtle("square")

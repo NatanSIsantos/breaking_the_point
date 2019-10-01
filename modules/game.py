@@ -2,10 +2,25 @@ import turtle
 import time
 import wave
 import simpleaudio as sa
+from random import randint
 from modules import targets, screens
 '''Este é o arquivo onde são configurados os objetos diretamente interagíveis
 pelo player, como bola e raquete, além de suas colisões e parâmetros'''
 
+star = turtle.Turtle()
+def moveToRandomLocation():
+    star.penup()
+    star.setpos( randint(-360, 360) , randint(-360, 360) )
+
+def drawStar(starSize, starColour):
+    star.color(starColour)
+    star.pendown()
+    star.begin_fill()
+    for __ in range(5):
+        star.left(144)
+        star.forward(starSize)
+    star.end_fill()
+    star.penup()
 
 def draw_objects():
     life = 3
@@ -30,9 +45,16 @@ def draw_objects():
 
     screen = turtle.Screen()
     screen.title("breaking_the_point")
-    screen.bgcolor("black")
+    screen.bgcolor("#010101")
     screen.setup(720, 720)
     screen.tracer(0)
+
+    # colocando estrelas de fundo
+    for __ in range(60):
+        moveToRandomLocation()
+        turtle.Turtle().penup()
+        drawStar( randint(2,6) , "#ccffcc")
+    turtle.Turtle().hideturtle()
 
     # desenhando a bola
     ball = turtle.Turtle("circle")
@@ -58,7 +80,7 @@ def draw_objects():
     # Variáveis de movimentação do player
     p_speed = 42
 
-    #reiniciar o jogo
+    # reiniciar o jogo
     def restart():
         player1.sety(-330)
         ball.goto(0, 0)
@@ -87,7 +109,7 @@ def draw_objects():
     screen.onkeypress(restart, 'space')
     screen.listen()
 
-
+    # desenhando blocos
     targets.matrix_generator()
     targets.block_printer()
 

@@ -8,26 +8,26 @@ screen = turtle.Screen()
 
 def matrix_generator():
     blocks = open('files/blocks_matrix.txt', 'w')
-    lin = 5  # núúmero de linhas
-    col = 8  # núúmero de colunas
+    lin = 40  # núúmero de linhas
+    col = 1 # núúmero de colunas
     for _ in range(lin):
         for _ in range(col):
-            number = randint(0, 4)
+            number = randint(0, 6)
             blocks.write(str(number))
         blocks.write('\n')
     blocks.close()
 
 
 def block_printer():
-    line = 0
-    collum = 0
+    line = 300
+    collum = -330
     blocks = open('files/blocks_matrix.txt', 'r')
 
     for _ in blocks:
 
         block = turtle.Turtle()
         block.shape("square")
-        block.shapesize(4, 1)
+        block.shapesize(1, 2)
         block.speed(10)
         line_list = list(_)
 
@@ -39,27 +39,30 @@ def block_printer():
                 block.penup()
                 block.hideturtle()
             elif __ == '1':
-                block.color("green")
+                block.color("lightgreen")
                 block.penup()
-                block.hideturtle()
             elif __ == '2':
                 block.color("blue")
                 block.penup()
-                block.hideturtle()
             elif __ == '3':
-                block.color("yellow")
+                block.color("orange")
                 block.penup()
-                block.hideturtle()
             elif __ == '4':
                 block.color("red")
+                block.penup()
+            elif __ == '5':
+                block.color("purple")
+                block.penup()
+            elif __ == '6':
+                block.color()
                 block.penup()
                 block.hideturtle()
 
             block.goto(collum, line)
-            collum += 90
-            if collum >= 720:
-                collum = 0
-                line += 9
+            collum += 22
+            if collum >= 330:
+                collum = -330
+                line -= 90
     blocks.close()
 
 loser = turtle.Turtle()

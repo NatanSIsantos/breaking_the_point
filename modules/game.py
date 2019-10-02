@@ -20,6 +20,16 @@ def draw_objects():
     heart.write("3 ", align="left", font=(
         "Press Start 2P", 24, "italic"))
 
+    score = turtle.Turtle()
+    score.speed(0)
+    score.shape("square")
+    score.color("red")
+    score.penup()
+    score.hideturtle()
+    score.goto(480,175)
+    score.write("score = 0",align="right",font=(
+        "Press Start 2P",24,"italic"))
+
     def pong_sound():
         wave_obj = sa.WaveObject.from_wave_file("files/pong.wav")
         wave_obj.play()
@@ -65,10 +75,15 @@ def draw_objects():
         ball.goto(0, 0)
         ball.dy = -1
         heart.clear()
+        score.clear()
+        global score_points
         global life
+        score_points = 0
         life = 3
         heart.write("{} ".format(life), align="left", font=(
             "Press Start 2P", 24, "italic"))
+        score.write("score = {}".format(score_points),align="right",font=(
+            "Press Start 2P",24,"italic"))
 
     # Movimentação do player
 

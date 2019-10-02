@@ -41,27 +41,27 @@ def block_printer():
                 block.hideturtle()
                 counter_null += 1
             elif __ == '1':
-                block.color("#669933")  # Dark Green Block
+                block.color("#883333")
                 block.penup()
                 lines_list.append(line)
                 collum_list.append(collum)
             elif __ == '2':
-                block.color("#ccff99")  # Light Green Block
+                block.color("#773344") 
                 block.penup()
                 lines_list.append(line)
                 collum_list.append(collum)
             elif __ == '3':
-                block.color("#ffcc99")  # Orange Block
+                block.color("#663355")
                 block.penup()
                 lines_list.append(line)
                 collum_list.append(collum)
             elif __ == '4':
-                block.color("#ff9999")  # Red Block
+                block.color("#553366")
                 block.penup()
                 lines_list.append(line)
                 collum_list.append(collum)
             elif __ == '5':
-                block.color("#999999")  # Gray Block
+                block.color("#443377") 
                 block.penup()
                 lines_list.append(line)
                 collum_list.append(collum)
@@ -84,10 +84,10 @@ loser = turtle.Turtle()
 loser.shape("square")
 loser.shapesize(stretch_wid=10, stretch_len=5)
 loser.speed(0)
-loser.color("white")
+loser.color("red")
 loser.penup()
 loser.hideturtle()
-loser.goto(-85, -200)
+loser.goto(120, -220)
 loser.fillcolor("black")
 
 
@@ -95,7 +95,7 @@ def game_over():
     loser.write(
         "SEE YOU,\n" +
         "SPACE TURTLE...\n" +
-        "\n\nGAME OVER.", align="right", font=("Press Start 2P", 24, "normal"))
+        "\n\nGAME OVER.", align="right", font=("Press Start 2P", 24, "bold"))
     loser.clear()
     time.sleep(3)
     screen.clear()

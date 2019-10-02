@@ -3,32 +3,22 @@ import time
 import wave
 import simpleaudio as sa
 from random import randint
-from modules import targets, screens, arts
+from modules import targets, screens
 '''Este é o arquivo onde são configurados os objetos diretamente interagíveis
 pelo player, como bola e raquete, além de suas colisões e parâmetros'''
 
 def draw_objects():
     life = 3
 
-    t = turtle.Turtle("turtle")
-    t.hideturtle()
-    t.goto(-250, 325)
-    t.penup()
-    t.speed(0)
-    t.turtlesize()
-    t.color("pink")
-    t.left(90)
-    t.showturtle()
-
     heart = turtle.Turtle()
     heart.speed(0)
     heart.shape("square")
-    heart.color("pink")
+    heart.color("red")
     heart.penup()
     heart.hideturtle()
-    heart.goto(-300, 310)
+    heart.goto(-480, 175)
     heart.write("3 ", align="left", font=(
-        "Press Start 2P", 24, "normal"))
+        "Press Start 2P", 24, "italic"))
 
     def pong_sound():
         wave_obj = sa.WaveObject.from_wave_file("files/pong.wav")
@@ -40,17 +30,14 @@ def draw_objects():
 
     screen = turtle.Screen()
     screen.title("breaking_the_point")
-    screen.bgcolor("MidnightBlue")
-    screen.setup(720, 720)
+    screen.bgpic("files/painel.png")
+    screen.setup(1080, 720)
     screen.tracer(0)
-
-    # colocando estrelas de fundo
-    arts.draw_backgroung()
 
     # desenhando a bola
     ball = turtle.Turtle("turtle")
     ball.speed(0)
-    ball.color("orange")
+    ball.color("#8bac0f")
     ball.left(270)
     ball.penup()
     ball.goto(0, 0)
@@ -65,7 +52,7 @@ def draw_objects():
     player1 = turtle.Turtle("square")
     player1.speed(0)
     player1.turtlesize(player_height, player_width)
-    player1.color("white")
+    player1.color("#9bbc0f")
     player1.penup()
     player1.sety(-330)
 
@@ -81,7 +68,7 @@ def draw_objects():
         global life
         life = 3
         heart.write("{} ".format(life), align="left", font=(
-            "Press Start 2P", 24, "normal"))
+            "Press Start 2P", 24, "italic"))
 
     # Movimentação do player
 
@@ -132,7 +119,7 @@ def draw_objects():
             life -= 1
             heart.clear()
             heart.write("{} ".format(life), align="left", font=(
-                "Press Start 2P", 24, "normal"))
+                "Press Start 2P", 24, "italic"))
             if life == 0:
                 targets.game_over()
                 heart.clear()

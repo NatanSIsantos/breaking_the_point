@@ -5,12 +5,11 @@ de telas, navegação de menu e derivados'''
 
 screen = turtle.Screen()
 
-
 def create_screen():  # função que cria a tela
     screen = turtle.Screen()
     screen.title("ST - Breaking the Point")
-    screen.bgcolor("black")
-    screen.setup(720, 720)
+    screen.bgpic("files/spc_turt.png")
+    screen.setup(600, 600)
     screen.tracer(0)
     menu()
     while True:
@@ -27,11 +26,41 @@ def on_score():  # tela chamada quando usuário escolher ver placar
 
 def menu():  # função que cria o menu principal
 
+    # Tela de seleção
+
+    mode = turtle.Turtle("square")
+    mode.speed(0)
+    mode.color("white")
+    mode.penup()
+    mode.hideturtle()
+    mode.goto(0, 10)
+    mode.write("JOGAR", align="center", font=(
+        "Press Start 2P", 18, "bold"))
+
+    mode = turtle.Turtle("square")
+    mode.speed(0)
+    mode.color("white")
+    mode.penup()
+    mode.hideturtle()
+    mode.goto(0, -30)
+    mode.write("PLACAR", align="center", font=(
+        "Press Start 2P", 18, "bold"))
+
+    mode = turtle.Turtle("square")
+    mode.speed(0)
+    mode.color("white")
+    mode.penup()
+    mode.hideturtle()
+    mode.goto(0, -70)
+    mode.write("OPÇÕES", align="center", font=(
+        "Press Start 2P", 18, "bold"))
+
+
     # Parâmetros da seleção
     selection = turtle.Turtle("square")
     selection.speed(0)
     selection.turtlesize(1.5, 6)
-    selection.color('pink')
+    selection.color('#9bbc0f')
     selection.fillcolor('')
     selection.penup()
     selection.sety(25)
@@ -66,44 +95,3 @@ def menu():  # função que cria o menu principal
     screen.onkeypress(selection_up, 'Up')
     screen.onkeypress(selection_down, 'Down')
     screen.listen()
-
-    # Título do jogo
-    game_title = turtle.Turtle("square")
-    game_title.speed(0)
-    game_title.color("white")
-    game_title.penup()
-    game_title.hideturtle()
-    game_title.goto(0, 180)
-    game_title.write(
-        "BREAKING\n" +
-        "     THE\n" +
-        " >POINT<\n", align="center", font=("Press Start 2P", 24, "normal"))
-
-    # Tela de seleção
-
-    mode = turtle.Turtle("square")
-    mode.speed(0)
-    mode.color("gray")
-    mode.penup()
-    mode.hideturtle()
-    mode.goto(0, 10)
-    mode.write("JOGAR", align="center", font=(
-        "Press Start 2P", 16, "normal"))
-
-    mode = turtle.Turtle("square")
-    mode.speed(0)
-    mode.color("gray")
-    mode.penup()
-    mode.hideturtle()
-    mode.goto(0, -30)
-    mode.write("PLACAR", align="center", font=(
-        "Press Start 2P", 16, "normal"))
-
-    mode = turtle.Turtle("square")
-    mode.speed(0)
-    mode.color("gray")
-    mode.penup()
-    mode.hideturtle()
-    mode.goto(0, -70)
-    mode.write("OPÇÕES", align="center", font=(
-        "Press Start 2P", 16, "normal"))

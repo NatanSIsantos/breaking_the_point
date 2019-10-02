@@ -43,8 +43,8 @@ def draw_objects():
     ball.color("orange")
     ball.penup()
     ball.goto(0, 0)
-    ball.dx = -0.5
-    ball.dy = -0.5
+    ball.dx = -1
+    ball.dy = -1
 
     # variáveis utilizadas no player
     player_height = 0.5
@@ -59,13 +59,13 @@ def draw_objects():
     player1.sety(-330)
 
     # Variáveis de movimentação do player
-    p_speed = 42
+    p_speed = 40
 
     # reiniciar o jogo
     def restart():
         player1.sety(-330)
         ball.goto(0, 0)
-        ball.dy = -0.5
+        ball.dy = -1
         heart.clear()
         global life
         life = 3
@@ -151,7 +151,7 @@ def draw_objects():
             pong_sound()
 
         # colisão da bola com o player
-        if (ball.ycor() < -320 and ball.xcor() < player1.xcor() + 65 and
+        if (ball.ycor() <= -320 and ball.xcor() <= player1.xcor() + 65 and
                 ball.xcor() > player1.xcor() - 65 and
                 ball.ycor() > -321):
             ball.dy *= -1

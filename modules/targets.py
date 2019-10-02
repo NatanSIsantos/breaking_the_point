@@ -24,6 +24,7 @@ def block_printer():
     blocks = open('files/blocks_matrix.txt', 'r')
     collum_list = []
     lines_list = []
+    counter_null = 0
     for _ in blocks:
 
         block = turtle.Turtle()
@@ -38,8 +39,7 @@ def block_printer():
                 block.color()
                 block.penup()
                 block.hideturtle()
-                lines_list.append(line)
-                collum_list.append(collum)
+                counter_null += 1
             elif __ == '1':
                 block.color("#669933")  # Dark Green Block
                 block.penup()
@@ -69,8 +69,7 @@ def block_printer():
                 block.color()
                 block.penup()
                 block.hideturtle()
-                lines_list.append(line)
-                collum_list.append(collum)
+                counter_null += 1
 
             block.goto(collum, line)
             collum += 22
@@ -79,7 +78,7 @@ def block_printer():
                 line -= 90
 
     blocks.close()
-    return (lines_list[::], collum_list[::])
+    return (lines_list[::], collum_list[::], counter_null)
 
 loser = turtle.Turtle()
 loser.shape("square")

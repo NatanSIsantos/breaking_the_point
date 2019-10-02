@@ -145,8 +145,8 @@ def draw_objects():
                 pong_sound()
 
         # colisão da bola com parede direita
-        if (ball.xcor() > 345):
-            ball.setx(345)
+        if (ball.xcor() > 350):
+            ball.setx(350)
             ball.dx *= -1
             pong_sound()
 

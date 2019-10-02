@@ -106,8 +106,8 @@ def draw_objects():
         ball.sety(ball.ycor() + ball.dy)
 
         # colisão da bola com parede superior
-        if (ball.ycor() >= 360):
-            ball.sety(360)
+        if (ball.ycor() > 350):
+            ball.sety(350)
             ball.dy *= -1
             ball.left(180)
             pong_sound()
@@ -130,14 +130,14 @@ def draw_objects():
                 pong_sound()
 
         # colisão da bola com parede direita
-        if (ball.xcor() > 360):
-            ball.setx(360)
+        if (ball.xcor() > 345):
+            ball.setx(345)
             ball.dx *= -1
             pong_sound()
 
         # colisão da bola com parede esquerda
-        if (ball.xcor() < -360):
-            ball.setx(-360)
+        if (ball.xcor() < -350):
+            ball.setx(-350)
             ball.dx *= -1
             pong_sound()
 

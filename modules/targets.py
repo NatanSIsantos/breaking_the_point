@@ -111,3 +111,15 @@ def counter():
         time.sleep(1)
         counter.clear()
         counter._update()
+
+'''def marker():
+        t = turtle.Turtle()
+        t.color("pink")
+        t.hideturtle()
+        t.goto(-280,310)
+        t.left(140)
+        t.forward(12)
+        t.circle(-6,15)
+        t.setheading(60)
+        t.circle(-6,15)
+        t.forward(12)'''

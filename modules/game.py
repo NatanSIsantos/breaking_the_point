@@ -10,6 +10,16 @@ pelo player, como bola e raquete, além de suas colisões e parâmetros'''
 def draw_objects():
     life = 3
 
+    t = turtle.Turtle("turtle")
+    t.hideturtle()
+    t.goto(-250, 325)
+    t.penup()
+    t.speed(0)
+    t.turtlesize()
+    t.color("pink")
+    t.left(90)
+    t.showturtle()
+
     heart = turtle.Turtle()
     heart.speed(0)
     heart.shape("square")
@@ -128,7 +138,7 @@ def draw_objects():
                 life = 3
                 heart.write("{} lifes".format(life), align="left", font=(
                     "Press Start 2P", 24, "normal"))
-                # screens.menu()
+                screens.create_screen()
             else:
                 targets.counter()
                 pong_sound()

@@ -27,7 +27,7 @@ def draw_objects():
     heart.penup()
     heart.hideturtle()
     heart.goto(-300, 310)
-    heart.write("3 lifes", align="left", font=(
+    heart.write("3 ", align="left", font=(
         "Press Start 2P", 24, "normal"))
 
     def pong_sound():
@@ -48,9 +48,10 @@ def draw_objects():
     arts.draw_backgroung()
 
     # desenhando a bola
-    ball = turtle.Turtle("circle")
+    ball = turtle.Turtle("turtle")
     ball.speed(0)
     ball.color("orange")
+    ball.left(270)
     ball.penup()
     ball.goto(0, 0)
     ball.dx = -1
@@ -79,7 +80,7 @@ def draw_objects():
         heart.clear()
         global life
         life = 3
-        heart.write("{} lifes".format(life), align="left", font=(
+        heart.write("{} ".format(life), align="left", font=(
             "Press Start 2P", 24, "normal"))
 
     # Movimentação do player
@@ -121,6 +122,7 @@ def draw_objects():
         if (ball.ycor() >= 360):
             ball.sety(360)
             ball.dy *= -1
+            ball.left(180)
             pong_sound()
 
         # colisão da bola com parede inferior
@@ -129,15 +131,12 @@ def draw_objects():
             ball.setx(0)
             life -= 1
             heart.clear()
-            heart.write("{} lifes".format(life), align="left", font=(
+            heart.write("{} ".format(life), align="left", font=(
                 "Press Start 2P", 24, "normal"))
             if life == 0:
                 targets.game_over()
-                time.sleep(1)
                 heart.clear()
                 life = 3
-                heart.write("{} lifes".format(life), align="left", font=(
-                    "Press Start 2P", 24, "normal"))
                 screens.create_screen()
             else:
                 targets.counter()
@@ -160,6 +159,7 @@ def draw_objects():
                 ball.xcor() >= player1.xcor() - 65 and
                 ball.ycor() > -322):
             ball.dy *= -1
+            ball.left(180)
             pong_sound()
 
         # colisão da bola com os blocos
@@ -174,8 +174,9 @@ def draw_objects():
                         else:
                             ball.sety(ball.ycor()+7)
                         ball.dy *= -1
-                        ball.dy+=0.2
-                        ball.dx+=0.2
+                        ball.left(180)
+                        ball.dy *= 1.01
+                        ball.dx *= 1.01
                         pong_sound()
                 j += 1
 

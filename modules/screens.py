@@ -8,7 +8,7 @@ screen = turtle.Screen()
 
 def create_screen():  # função que cria a tela
     screen = turtle.Screen()
-    screen.title("Breaking the Point")
+    screen.title("ST - Breaking the Point")
     screen.bgcolor("black")
     screen.setup(720, 720)
     screen.tracer(0)

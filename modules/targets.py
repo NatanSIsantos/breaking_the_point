@@ -84,18 +84,21 @@ loser = turtle.Turtle()
 loser.shape("square")
 loser.shapesize(stretch_wid=10, stretch_len=5)
 loser.speed(0)
-loser.color("red")
+loser.color("white")
 loser.penup()
 loser.hideturtle()
-loser.goto(0, 0)
+loser.goto(-85, -200)
+loser.fillcolor("black")
 
 
 def game_over():
     loser.write(
-        "GAME\n" +
-        "OVER\n" +
-        "Press [SPACE] to restart", align="center", font=("Press Start 2P", 24, "normal"))
+        "SEE YOU,\n" +
+        "SPACE TURTLE...\n" +
+        "\n\nGAME OVER.", align="right", font=("Press Start 2P", 24, "normal"))
     loser.clear()
+    time.sleep(3)
+    screen.clear()
 
 
 def counter():
@@ -108,7 +111,7 @@ def counter():
     for i in range(0, 3):
         counter.write("\r{}".format(-1*(i-3)), align="center", font=(
             "Press Start 2P", 18, "normal"))
-        time.sleep(1)
+        time.sleep(0.5)
         counter.clear()
         counter._update()
 

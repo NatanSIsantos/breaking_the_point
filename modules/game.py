@@ -157,13 +157,59 @@ def draw_objects():
             pong_sound()
 
         # colisão da bola com o player
-        if (ball.ycor() <= -318 and ball.xcor() <= player1.xcor() + 65 and
+                if (ball.ycor() <= -312 and ball.xcor() < player1.xcor() - 48.75 and
                 ball.xcor() >= player1.xcor() - 65 and
                 ball.ycor() > -322):
+            ball.dx = -1
             ball.dy *= -1
-            ball.left(180)
             pong_sound()
-
+        elif (ball.ycor() <= -312 and ball.xcor() > player1.xcor() + 48.75 and
+                ball.xcor() <= player1.xcor() + 65 and
+                ball.ycor() > -322):
+            ball.dx = 1
+            ball.dy *= -1
+            pong_sound()
+        elif (ball.ycor() <= -312 and ball.xcor() < player1.xcor() - 32.5 and
+                ball.xcor() >= player1.xcor() - 48.75 and
+                ball.ycor() > -322):
+            ball.dx = -0.75
+            ball.dy *= -1
+            pong_sound()
+        elif (ball.ycor() <= -312 and ball.xcor() > player1.xcor() + 32.5 and
+                ball.xcor() <= player1.xcor() + 48.75 and
+                ball.ycor() > -322):
+            ball.dx = 0.75
+            ball.dy *= -1
+            pong_sound()
+        elif (ball.ycor() <= -312 and ball.xcor() < player1.xcor() - 16.25 and
+                ball.xcor() >= player1.xcor() - 32.5 and
+                ball.ycor() > -322):
+            ball.dx = -0.5
+            ball.dy *= -1
+            pong_sound()
+        elif (ball.ycor() <= -312 and ball.xcor() > player1.xcor() + 16.25 and
+                ball.xcor() <= player1.xcor() + 32.5 and
+                ball.ycor() > -322):
+            ball.dx = 0.5
+            ball.dy *= -1
+            pong_sound()
+        elif (ball.ycor() <= -312 and ball.xcor() < player1.xcor() and
+                ball.xcor() >= player1.xcor() - 16.25 and
+                ball.ycor() > -322):
+            ball.dx = -0.25
+            ball.dy *= -1
+            pong_sound()
+        elif (ball.ycor() <= -312 and ball.xcor() > player1.xcor() and
+                ball.xcor() <= player1.xcor() + 16.25 and
+                ball.ycor() > -322):
+            ball.dx = 0.25
+            ball.dy *= -1
+            pong_sound()
+        elif (ball.ycor() <= -312 and ball.xcor() == player.xcor() and
+                ball.ycor() > -322):
+            ball.dx = 0
+            ball.dy *= -1
+            pong_sound()
         # colisão da bola com os blocos
         if (ball.ycor() >= 0):
             j = 0

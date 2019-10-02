@@ -18,12 +18,12 @@ def matrix_generator():
         blocks.write('\n')
     blocks.close()
 
-
 def block_printer():
     line = 300
     collum = -330
     blocks = open('files/blocks_matrix.txt', 'r')
-
+    collum_list = []
+    lines_list = []
     for _ in blocks:
 
         block = turtle.Turtle()
@@ -31,7 +31,6 @@ def block_printer():
         block.shapesize(1, 2)
         block.speed(10)
         line_list = list(_)
-
         for __ in line_list:
             if __ == '\n':
                 block.write("\n")
@@ -39,33 +38,48 @@ def block_printer():
                 block.color()
                 block.penup()
                 block.hideturtle()
+                lines_list.append(line)
+                collum_list.append(collum)
             elif __ == '1':
                 block.color("#669933")  # Dark Green Block
                 block.penup()
+                lines_list.append(line)
+                collum_list.append(collum)
             elif __ == '2':
                 block.color("#ccff99")  # Light Green Block
                 block.penup()
+                lines_list.append(line)
+                collum_list.append(collum)
             elif __ == '3':
                 block.color("#ffcc99")  # Orange Block
                 block.penup()
+                lines_list.append(line)
+                collum_list.append(collum)
             elif __ == '4':
                 block.color("#ff9999")  # Red Block
                 block.penup()
+                lines_list.append(line)
+                collum_list.append(collum)
             elif __ == '5':
                 block.color("#999999")  # Gray Block
                 block.penup()
+                lines_list.append(line)
+                collum_list.append(collum)
             elif __ == '6':
                 block.color()
                 block.penup()
                 block.hideturtle()
+                lines_list.append(line)
+                collum_list.append(collum)
 
             block.goto(collum, line)
             collum += 22
             if collum >= 330:
                 collum = -330
                 line -= 90
-    blocks.close()
 
+    blocks.close()
+    return (lines_list[::], collum_list[::])
 
 loser = turtle.Turtle()
 loser.shape("square")

@@ -3,28 +3,9 @@ import time
 import wave
 import simpleaudio as sa
 from random import randint
-from modules import targets, screens
+from modules import targets, screens, arts
 '''Este é o arquivo onde são configurados os objetos diretamente interagíveis
 pelo player, como bola e raquete, além de suas colisões e parâmetros'''
-
-star = turtle.Turtle()
-
-
-def moveToRandomLocation():
-    star.penup()
-    star.setpos(randint(-360, 360), randint(-360, 360))
-
-
-def drawStar(starSize, starColour):
-    star.color(starColour)
-    star.pendown()
-    star.begin_fill()
-    for __ in range(5):
-        star.left(144)
-        star.forward(starSize)
-    star.end_fill()
-    star.penup()
-
 
 def draw_objects():
     life = 3
@@ -49,16 +30,12 @@ def draw_objects():
 
     screen = turtle.Screen()
     screen.title("breaking_the_point")
-    screen.bgcolor("#010101")
+    screen.bgcolor("MidnightBlue")
     screen.setup(720, 720)
     screen.tracer(0)
 
     # colocando estrelas de fundo
-    for __ in range(60):
-        moveToRandomLocation()
-        turtle.Turtle().penup()
-        drawStar(randint(2, 6), "#ccffcc")
-    turtle.Turtle().hideturtle()
+    arts.draw_backgroung()
 
     # desenhando a bola
     ball = turtle.Turtle("circle")
@@ -66,8 +43,8 @@ def draw_objects():
     ball.color("orange")
     ball.penup()
     ball.goto(0, 0)
-    ball.dx = 0.5
-    ball.dy = 0.5
+    ball.dx = -0.5
+    ball.dy = -0.5
 
     # variáveis utilizadas no player
     player_height = 0.5
@@ -77,7 +54,7 @@ def draw_objects():
     player1 = turtle.Turtle("square")
     player1.speed(0)
     player1.turtlesize(player_height, player_width)
-    player1.color("gray")
+    player1.color("white")
     player1.penup()
     player1.sety(-330)
 
@@ -88,7 +65,7 @@ def draw_objects():
     def restart():
         player1.sety(-330)
         ball.goto(0, 0)
-        ball.dy = 0.2
+        ball.dy = -0.5
         heart.clear()
         global life
         life = 3
@@ -115,7 +92,9 @@ def draw_objects():
 
     # desenhando blocos
     targets.matrix_generator()
-    targets.block_printer()
+    lines = list()
+    collum = list()
+    (lines, collum) = targets.block_printer()
 
     while True:
         if musica.is_playing() is False:
@@ -124,6 +103,14 @@ def draw_objects():
         # movimentação da bola
         ball.setx(ball.xcor() + ball.dx)
         ball.sety(ball.ycor() + ball.dy)
+
+        # colisão da bola com blocos
+        if (ball.ycor() >= 30):
+            for _ in lines:
+                if(ball.ycor() == _):
+                    for __ in collum:
+                        if (ball.xcor() <= __+5)or(ball.xcor() >= __-5):
+                            ball.dy *= -1
 
         # colisão da bola com parede superior
         if (ball.ycor() >= 360):
@@ -170,69 +157,71 @@ def draw_objects():
             ball.dy *= -1
 
             # divisão de setores
-            if (ball.xcor() <= player1.xcor() + 5 and
-                    ball.xcor() >= player1.xcor() - 5):
+            if (ball.ycor() <= player1.ycor() + 5 and
+                    ball.ycor() >= player1.ycor() - 5):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dy
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dy
+
+            elif (ball.ycor() > player1.ycor() + 5 and
+                  ball.ycor() <= player1.ycor() + 20):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx + 0.08
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx - 0.08
+
+            elif (ball.ycor() < player1.ycor() - 5 and
+                  ball.ycor() >= player1.ycor() - 20):
+                if (ball.dy > 0):
+                    ball.dy = -ball.dx - 0.08
+                elif (ball.dy < 0):
+                    ball.dy = -ball.dx + 0.08
+
+            elif (ball.xcor() > player1.xcor() + 20 and
+                  ball.xcor() <= player1.xcor() + 35):
                 if (ball.dx > 0):
-                    ball.dx = ball.dy
+                    ball.dx = -ball.dy + 0.12
                 elif (ball.dx < 0):
-                    ball.dx = -ball.dy
+                    ball.dx = -ball.dy - 0.12
 
-            elif (ball.xcor() > player1.xcor() + 5 and
-                  ball.xcor() <= player1.xcor() + 20):
+            elif (ball.xcor() < player1.xcor() - 20 and
+                  ball.xcor() >= player1.xcor() - 35):
                 if (ball.dx > 0):
-                    ball.dx = ball.dy + 0.02
+                    ball.dx = -ball.dy - 0.12
                 elif (ball.dx < 0):
-                    ball.dx = -ball.dy - 0.02
+                    ball.dx = -ball.dy + 0.12
 
-            elif (ball.xcor() < player1.xcor() - 5 and
-                  ball.xcor() >= player1.xcor() - 20):
+            elif (ball.xcor() > player1.xcor() + 35 and
+                  ball.xcor() <= player1.xcor() + 50):
                 if (ball.dx > 0):
-                    ball.dx = ball.dy - 0.02
+                    ball.dx = ball.dy + 0.16
                 elif (ball.dx < 0):
-                    ball.dx = -ball.dy + 0.02
+                    ball.dx = -ball.dy - 0.16
 
-            elif (ball.ycor() > player1.ycor() + 20 and
-                  ball.ycor() <= player1.ycor() + 35):
-                if (ball.dy > 0):
-                    ball.dy = ball.dx + 0.03
-                elif (ball.dy < 0):
-                    ball.dy = -ball.dx - 0.03
+            elif (ball.xcor() < player1.xcor() - 35 and
+                  ball.xcor() >= player1.xcor() - 50):
+                if (ball.dx > 0):
+                    ball.dx = ball.dy - 0.16
+                elif (ball.dx < 0):
+                    ball.dx = -ball.dy + 0.16
 
-            elif (ball.ycor() < player1.ycor() - 20 and
-                  ball.ycor() >= player1.ycor() - 35):
-                if (ball.dy > 0):
-                    ball.dy = ball.dx - 0.03
-                elif (ball.dy < 0):
-                    ball.dy = -ball.dx + 0.03
+            elif (ball.xcor() > player1.xcor() + 50 and
+                  ball.xcor() <= player1.xcor() + 65):
+                if (ball.dx > 0):
+                    ball.dx = ball.dy + 0.20
+                elif (ball.dx < 0):
+                    ball.dx = -ball.dy - 0.20
 
-            elif (ball.ycor() > player1.ycor() + 35 and
-                  ball.ycor() <= player1.ycor() + 50):
-                if (ball.dy > 0):
-                    ball.dy = ball.dx + 0.04
-                elif (ball.dy < 0):
-                    ball.dy = -ball.dx - 0.04
-
-            elif (ball.ycor() < player1.ycor() - 35 and
-                  ball.ycor() >= player1.ycor() - 50):
-                if (ball.dy > 0):
-                    ball.dy = ball.dx - 0.04
-                elif (ball.dy < 0):
-                    ball.dy = -ball.dx + 0.04
-
-            elif (ball.ycor() > player1.ycor() + 50 and
-                  ball.ycor() <= player1.ycor() + 65):
-                if (ball.dy > 0):
-                    ball.dy = ball.dx + 0.05
-                elif (ball.dy < 0):
-                    ball.dy = -ball.dx - 0.05
-
-            elif (ball.ycor() < player1.ycor() - 50 and
-                  ball.ycor() >= player1.ycor() - 65):
-                if (ball.dy > 0):
-                    ball.dy = ball.dx + 0.05
-                elif (ball.dy < 0):
-                    ball.dy = -ball.dx - 0.05
+            elif (ball.xcor() < player1.xcor() - 50 and
+                  ball.xcor() >= player1.xcor() - 65):
+                if (ball.dx > 0):
+                    ball.dx = ball.dy + 0.20
+                elif (ball.dx < 0):
+                    ball.dx = -ball.dy - 0.20
             pong_sound()
+
+        # colisão da bola com os blocos
 
         # colisão do player com as paredes
         if (player1.xcor() > 300):

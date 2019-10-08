@@ -1,33 +1,17 @@
 import turtle
-from modules import game, score
-'''Este é o arquivo onde são feitas as configurações envolvendo as transições
-de telas, navegação de menu e derivados'''
+from screens import game, options, score
 
-screen = turtle.Screen()
+def menu():
+    def selection_sound():
+        pass
 
-def create_screen():  # função que cria a tela
-    screen = turtle.Screen()
-    screen.title("ST - Breaking the Point")
-    screen.bgpic("files/spc_turt.png")
-    screen.setup(600, 600)
-    screen.tracer(0)
-    menu()
-    while True:
-        screen.update()
+    menu_win = turtle.Screen()
+    menu_win.title("The Space Turtles")
+    menu_win.bgpic("files/spc_turt.png")
+    menu_win.setup(600, 600)
+    menu_win.tracer(0)
 
-
-def on_game():  # tela chamada quando usuário escolher jogar
-    game.draw_objects()
-
-
-def on_score():  # tela chamada quando usuário escolher ver placar
-    score.show_score()
-
-
-def menu():  # função que cria o menu principal
-
-    # Tela de seleção
-
+    # Menu
     mode = turtle.Turtle("square")
     mode.speed(0)
     mode.color("white")
@@ -55,7 +39,6 @@ def menu():  # função que cria o menu principal
     mode.write("OPÇÕES", align="center", font=(
         "Press Start 2P", 18, "bold"))
 
-
     # Parâmetros da seleção
     selection = turtle.Turtle("square")
     selection.speed(0)
@@ -70,28 +53,34 @@ def menu():  # função que cria o menu principal
         if selection.ycor() >= 25:
             selection.sety(-95)
         selection.sety(selection.ycor() + 40)
-        # selection_sound()
+        selection_sound()
 
     def selection_down():
         if selection.ycor() <= -55:
             selection.sety(65)
         selection.sety(selection.ycor() - 40)
-        # selection_sound()
+        selection_sound()
 
     def selection_mode():
         if (selection.ycor() == 25):
-            screen.clear()
-            on_game()
+            menu_win.clear()
+            menu_win.setup(1080,720)
+            game.on_game()
+            menu_win.bye()
 
         if (selection.ycor() == -15):
-            screen.clear()
-            on_score()
+            menu_win.clear()
+            score.on_score()
 
         if (selection.ycor() == -55):
-            screen.clear()
+            menu_win.clear()
+            options.on_options()
 
     # Esperando que o usuário aperte uma tecla
-    screen.onkeypress(selection_mode, 'Return')
-    screen.onkeypress(selection_up, 'Up')
-    screen.onkeypress(selection_down, 'Down')
-    screen.listen()
+    menu_win.onkeypress(selection_mode, 'Return')
+    menu_win.onkeypress(selection_up, 'Up')
+    menu_win.onkeypress(selection_down, 'Down')
+    menu_win.listen()
+
+    while True:
+        menu_win.update()

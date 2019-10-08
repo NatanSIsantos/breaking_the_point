@@ -1,11 +1,89 @@
 import turtle
 import time
 from random import randint
-'''Este é o arquivo onde é configurado os parâmetros das gerações de fases,
-pontuações, vida e afins'''
 
-screen = turtle.Screen()
+def draw_game_states():
+    life = 3
+    points = 0
 
+    heart = turtle.Turtle()
+    heart.speed(0)
+    heart.shape("square")
+    heart.color("red")
+    heart.penup()
+    heart.hideturtle()
+    heart.goto(-480, 175)
+    heart.write("{} ".format(life), align="left", font=(
+        "Press Start 2P", 24, "italic"))
+
+    score = turtle.Turtle()
+    score.speed(0)
+    score.shape("square")
+    score.color("black")
+    score.penup()
+    score.hideturtle()
+    score.goto(500,-280)
+    score.write("0", align="right", font=(
+        "Press Start 2P", 24, "bold"))
+    return (life, points, score, heart)
+
+
+def draw_blocks():
+    pass
+
+
+def draw_ball():
+    ball = turtle.Turtle("turtle")
+    ball.speed(0)
+    ball.color("#8bac0f")
+    ball.left(270)
+    ball.penup()
+    ball.goto(0, 0)
+    return ball
+
+
+def draw_player():
+    player1 = turtle.Turtle("square")
+    player1.speed(0)
+    player1.turtlesize(2, 5)
+    player1.color("#9bbc0f")
+    player1.penup()
+    player1.sety(-330)
+    return player1
+
+
+def game_over():
+    loser = turtle.Turtle()
+    loser.shape("square")
+    loser.shapesize(stretch_wid=10, stretch_len=5)
+    loser.speed(0)
+    loser.color("red")
+    loser.penup()
+    loser.hideturtle()
+    loser.goto(120, -220)
+    loser.fillcolor("black")
+
+    loser.write(
+        "SEE YOU,\n" +
+        "SPACE TURTLE...\n" +
+        "\n\nGAME OVER.", align="right", font=("Press Start 2P", 24, "bold"))
+    loser.clear()
+    time.sleep(3)
+    turtle.Screen().clear()
+
+def counter():
+    counter = turtle.Turtle("square")
+    counter.speed(0)
+    counter.color("lightgreen")
+    counter.penup()
+    counter.hideturtle()
+    counter.goto(0, 0)
+    for i in range(0, 3):
+        counter.write("\r{}".format(-1*(i-3)), align="center", font=(
+            "Press Start 2P", 18, "normal"))
+        time.sleep(0.5)
+        counter.clear()
+        counter._update()
 
 def matrix_generator():
     blocks = open('files/blocks_matrix.txt', 'w')
@@ -46,7 +124,7 @@ def block_printer():
                 lines_list.append(line)
                 collum_list.append(collum)
             elif __ == '2':
-                block.color("#773344") 
+                block.color("#773344")
                 block.penup()
                 lines_list.append(line)
                 collum_list.append(collum)
@@ -61,7 +139,7 @@ def block_printer():
                 lines_list.append(line)
                 collum_list.append(collum)
             elif __ == '5':
-                block.color("#443377") 
+                block.color("#443377")
                 block.penup()
                 lines_list.append(line)
                 collum_list.append(collum)
@@ -78,51 +156,4 @@ def block_printer():
                 line -= 90
 
     blocks.close()
-    return (lines_list[::], collum_list[::], counter_null)
-
-loser = turtle.Turtle()
-loser.shape("square")
-loser.shapesize(stretch_wid=10, stretch_len=5)
-loser.speed(0)
-loser.color("red")
-loser.penup()
-loser.hideturtle()
-loser.goto(120, -220)
-loser.fillcolor("black")
-
-
-def game_over():
-    loser.write(
-        "SEE YOU,\n" +
-        "SPACE TURTLE...\n" +
-        "\n\nGAME OVER.", align="right", font=("Press Start 2P", 24, "bold"))
-    loser.clear()
-    time.sleep(3)
-    screen.clear()
-
-
-def counter():
-    counter = turtle.Turtle("square")
-    counter.speed(0)
-    counter.color("lightgreen")
-    counter.penup()
-    counter.hideturtle()
-    counter.goto(0, 0)
-    for i in range(0, 3):
-        counter.write("\r{}".format(-1*(i-3)), align="center", font=(
-            "Press Start 2P", 18, "normal"))
-        time.sleep(0.5)
-        counter.clear()
-        counter._update()
-
-'''def marker():
-        t = turtle.Turtle()
-        t.color("pink")
-        t.hideturtle()
-        t.goto(-280,310)
-        t.left(140)
-        t.forward(12)
-        t.circle(-6,15)
-        t.setheading(60)
-        t.circle(-6,15)
-        t.forward(12)'''
+    return (block, lines_list[::], collum_list[::], counter_null)

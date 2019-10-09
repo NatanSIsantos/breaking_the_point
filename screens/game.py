@@ -142,6 +142,10 @@ def on_game():
                 if(lines[j] >= ball.ycor() - 7) and (lines[j] <= ball.ycor() + 7):
                     if(collum [j] >= ball.xcor() -15) and (collum [j] <= (
                         ball.xcor() + 15)):
+                        points += 20
+                        score.clear()
+                        score.write("{} ".format(points), align="right", font=(
+                            "Press Start 2P", 24,"bold"))
                         if (ball.dy > 0):
                             ball.sety(ball.ycor()-7)
                         else:
@@ -151,10 +155,9 @@ def on_game():
                         ball.dy *= 1.01
                         ball.dx *= 1.01
                         # pong_sound()
-                        collided = True
+                        '''collided = True
                         objects.matrix_generator(collided, j)
-                        (lines, collum, nulls) = objects.block_printer(collided)
-
+                        (lines, collum, nulls) = objects.block_printer(collided)'''
                 j += 1
 
         if (player.xcor() >= 300):

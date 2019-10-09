@@ -85,67 +85,75 @@ def on_game():
                 ball.ycor() > -322):
             ball.dx = -1
             ball.dy *= -1
+            ball.left(180)
             # pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() > player.xcor() + 48.75 and
                 ball.xcor() <= player.xcor() + 65 and
                 ball.ycor() > -322):
             ball.dx = 1
             ball.dy *= -1
+            ball.left(180)
             # pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() < player.xcor() - 32.5 and
                 ball.xcor() >= player.xcor() - 48.75 and
                 ball.ycor() > -322):
             ball.dx = -0.75
             ball.dy *= -1
+            ball.left(180)
             # pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() > player.xcor() + 32.5 and
                 ball.xcor() <= player.xcor() + 48.75 and
                 ball.ycor() > -322):
             ball.dx = 0.75
             ball.dy *= -1
+            ball.left(180)
             # pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() < player.xcor() - 16.25 and
                 ball.xcor() >= player.xcor() - 32.5 and
                 ball.ycor() > -322):
             ball.dx = -0.5
             ball.dy *= -1
+            ball.left(180)
             # pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() > player.xcor() + 16.25 and
                 ball.xcor() <= player.xcor() + 32.5 and
                 ball.ycor() > -322):
             ball.dx = 0.5
             ball.dy *= -1
+            ball.left(180)
             # pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() < player.xcor() and
                 ball.xcor() >= player.xcor() - 16.25 and
                 ball.ycor() > -322):
             ball.dx = -0.25
             ball.dy *= -1
+            ball.left(180)
             # pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() > player.xcor() and
                 ball.xcor() <= player.xcor() + 16.25 and
                 ball.ycor() > -322):
             ball.dx = 0.25
             ball.dy *= -1
+            ball.left(180)
             # pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() == player.xcor() and
                 ball.ycor() > -322):
             ball.dx = 0
             ball.dy *= -1
+            ball.left(180)
             # pong_sound()
-
 
         # colisão da bola com os blocos
         if (ball.ycor() >= 0):
             j = 0
             while j < (60-nulls):
                 if(lines[j] >= ball.ycor() - 7) and (lines[j] <= ball.ycor() + 7):
-                    if(collum [j] >= ball.xcor() -15) and (collum [j] <= (
-                        ball.xcor() + 15)):
+                    if(collum[j] >= ball.xcor() - 15) and (collum[j] <= (
+                            ball.xcor() + 15)):
                         points += 20
                         score.clear()
                         score.write("{} ".format(points), align="right", font=(
-                            "Press Start 2P", 24,"bold"))
+                            "Press Start 2P", 24, "bold"))
                         if (ball.dy > 0):
                             ball.sety(ball.ycor()-7)
                         else:

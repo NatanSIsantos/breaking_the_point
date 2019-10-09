@@ -1,6 +1,7 @@
 import turtle
 from screens import game, options, score
 
+
 def menu():
     def selection_sound():
         pass
@@ -64,7 +65,7 @@ def menu():
     def selection_mode():
         if (selection.ycor() == 25):
             menu_win.clear()
-            menu_win.setup(1080,720)
+            menu_win.setup(1080, 720)
             game.on_game()
             menu_win.bye()
 

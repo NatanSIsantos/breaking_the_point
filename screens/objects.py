@@ -2,6 +2,7 @@ import turtle
 import time
 from random import randint
 
+
 def draw_game_states():
     life = 3
     points = 0
@@ -22,7 +23,7 @@ def draw_game_states():
     score.color("black")
     score.penup()
     score.hideturtle()
-    score.goto(500,-280)
+    score.goto(500, -280)
     score.write("0", align="right", font=(
         "Press Start 2P", 24, "bold"))
     return (life, points, score, heart)
@@ -67,6 +68,7 @@ def game_over():
     time.sleep(3)
     turtle.Screen().clear()
 
+
 def counter():
     counter = turtle.Turtle("square")
     counter.speed(0)
@@ -81,6 +83,7 @@ def counter():
         counter.clear()
         counter._update()
 
+
 def matrix_generator(collided, number):
     blocks = open('files/blocks_matrix.txt', 'w')
     blockr = open('files/blocks_matrix.txt')
@@ -88,7 +91,8 @@ def matrix_generator(collided, number):
     col = 1  # núúmero de colunas
 
     if collided is True:
-        linhas = [linhas.strip() for _ in blockr]  # cada linha é um elemento da lista linhas
+        # cada linha é um elemento da lista linhas
+        linhas = [linhas.strip() for _ in blockr]
         print(linhas)
         linhas[number] = '0\n'
         blocks.write(linhas[::])

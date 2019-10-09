@@ -109,6 +109,7 @@ def block_printer(collided):
     collum_list = []
     lines_list = []
     counter_null = 0
+    block_color = "#"
 
     for _ in blocks:
         block = turtle.Turtle()
@@ -128,27 +129,42 @@ def block_printer(collided):
                 block.hideturtle()
                 counter_null += 1
             elif __ == '1':
-                block.color("#883333")
+                block_color = "#"
+                for _ in range(6):
+                    block_color += str(randint(0, 9))
+                block.color(block_color)
                 block.penup()
                 lines_list.append(line)
                 collum_list.append(collum)
             elif __ == '2':
-                block.color("#773344")
+                block_color = "#"
+                for _ in range(6):
+                    block_color += str(randint(0, 9))
+                block.color(block_color)
                 block.penup()
                 lines_list.append(line)
                 collum_list.append(collum)
             elif __ == '3':
-                block.color("#663355")
+                block_color = "#"
+                for _ in range(6):
+                    block_color += str(randint(0, 9))
+                block.color(block_color)
                 block.penup()
                 lines_list.append(line)
                 collum_list.append(collum)
             elif __ == '4':
-                block.color("#553366")
+                block_color = "#"
+                for _ in range(6):
+                    block_color += str(randint(0, 9))
+                block.color(block_color)
                 block.penup()
                 lines_list.append(line)
                 collum_list.append(collum)
             elif __ == '5':
-                block.color("#443377")
+                block_color = "#"
+                for _ in range(6):
+                    block_color += str(randint(0, 9))
+                block.color(block_color)
                 block.penup()
                 lines_list.append(line)
                 collum_list.append(collum)

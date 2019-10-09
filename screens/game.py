@@ -37,7 +37,7 @@ def on_game():
     nulls = 0
     lines = list()
     collum = list()
-    (blocks, lines, collum, nulls) = objects.block_printer(collided)
+    (lines, collum, nulls) = objects.block_printer(collided)
 
     while True:
         collided = False
@@ -153,8 +153,8 @@ def on_game():
                         # pong_sound()
                         collided = True
                         objects.matrix_generator(collided, j)
-                        (blocks, lines, collum, nulls) = objects.block_printer(collided)
-                        
+                        (lines, collum, nulls) = objects.block_printer(collided)
+
                 j += 1
 
         if (player.xcor() >= 300):

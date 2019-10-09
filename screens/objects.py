@@ -28,10 +28,6 @@ def draw_game_states():
     return (life, points, score, heart)
 
 
-def draw_blocks():
-    pass
-
-
 def draw_ball():
     ball = turtle.Turtle("turtle")
     ball.speed(0)
@@ -87,13 +83,13 @@ def counter():
 
 def matrix_generator(collided, number):
     blocks = open('files/blocks_matrix.txt', 'w')
-    blockr = open('files/blocks_matrix.txt', 'r')
+    blockr = open('files/blocks_matrix.txt')
     lin = 60  # núúmero de linhas
     col = 1  # núúmero de colunas
 
     if collided is True:
-        linhas = blockr.readlines() # cada linha é um elemento da lista linhas
-        print(linhas[::])
+        linhas = [linhas.strip() for _ in blockr]  # cada linha é um elemento da lista linhas
+        print(linhas)
         linhas[number] = '0\n'
         blocks.write(linhas[::])
     elif collided is False:
@@ -167,4 +163,4 @@ def block_printer(collided):
                 collum = -330
                 line -= 90
     blocks.close()
-    return (block, lines_list[::], collum_list[::], counter_null)
+    return (lines_list[::], collum_list[::], counter_null)

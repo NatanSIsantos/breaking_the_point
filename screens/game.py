@@ -1,9 +1,12 @@
 import turtle
 from screens import objects
 import menu
-
+import simpleaudio as sa
 
 def on_game():
+    def pong_sound():
+        wave_obj = sa.WaveObject.from_wave_file("files/pong.wav")
+        play_obj = wave_obj.play()
     game_win = turtle.Screen()
     game_win.screensize(1080, 720)
     game_win.bgpic("files/painel.png")
@@ -31,6 +34,9 @@ def on_game():
     # game_win.onkeypress(restart, 'space')
     game_win.listen()
 
+    song = sa.WaveObject.from_wave_file("files/breaking_the_silence.wav")
+    song_obj = song.play()
+
     collided = False
     # desenhando blocos
     objects.matrix_generator(collided, -1)
@@ -44,18 +50,22 @@ def on_game():
         ball.sety(ball.ycor()+ball.dy)
         ball.setx(ball.xcor()+ball.dx)
 
+        if song_obj.is_playing() is False:
+            song = sa.WaveObject.from_wave_file("files/breaking_the_silence.wav")
         # colisão da bola com parede superior
         if (ball.ycor() > 350):
             ball.sety(350)
             ball.dy *= -1
             ball.left(180)
-            # pong_sound()
+            pong_sound()
 
         # colisão da bola com parede inferior
         if (ball.ycor() <= -360):
             ball.sety(-45)
             ball.setx(0)
             life -= 1
+            ball.dx = -1.0
+            ball.dy = -1.0
             heart.clear()
             heart.write("{} ".format(life), align="left", font=(
                 "Press Start 2P", 24, "italic"))
@@ -65,19 +75,19 @@ def on_game():
                 menu.menu()
             else:
                 objects.counter()
-                # pong_sound()
+                pong_sound()
 
         # colisão da bola com parede direita
         if (ball.xcor() > 350):
             ball.setx(350)
             ball.dx *= -1
-            # pong_sound()
+            pong_sound()
 
         # colisão da bola com parede esquerda
         if (ball.xcor() < -350):
             ball.setx(-350)
             ball.dx *= -1
-            # pong_sound()
+            pong_sound()
 
         # colisão da bola com o player
         if (ball.ycor() <= -310 and ball.xcor() < player.xcor() - 48.75 and
@@ -86,62 +96,62 @@ def on_game():
             ball.dx = -1
             ball.dy *= -1
             ball.left(180)
-            # pong_sound()
+            pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() > player.xcor() + 48.75 and
                 ball.xcor() <= player.xcor() + 65 and
                 ball.ycor() > -322):
             ball.dx = 1
             ball.dy *= -1
             ball.left(180)
-            # pong_sound()
+            pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() < player.xcor() - 32.5 and
                 ball.xcor() >= player.xcor() - 48.75 and
                 ball.ycor() > -322):
             ball.dx = -0.75
             ball.dy *= -1
             ball.left(180)
-            # pong_sound()
+            pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() > player.xcor() + 32.5 and
                 ball.xcor() <= player.xcor() + 48.75 and
                 ball.ycor() > -322):
             ball.dx = 0.75
             ball.dy *= -1
             ball.left(180)
-            # pong_sound()
+            pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() < player.xcor() - 16.25 and
                 ball.xcor() >= player.xcor() - 32.5 and
                 ball.ycor() > -322):
             ball.dx = -0.5
             ball.dy *= -1
             ball.left(180)
-            # pong_sound()
+            pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() > player.xcor() + 16.25 and
                 ball.xcor() <= player.xcor() + 32.5 and
                 ball.ycor() > -322):
             ball.dx = 0.5
             ball.dy *= -1
             ball.left(180)
-            # pong_sound()
+            pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() < player.xcor() and
                 ball.xcor() >= player.xcor() - 16.25 and
                 ball.ycor() > -322):
             ball.dx = -0.25
             ball.dy *= -1
             ball.left(180)
-            # pong_sound()
+            pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() > player.xcor() and
                 ball.xcor() <= player.xcor() + 16.25 and
                 ball.ycor() > -322):
             ball.dx = 0.25
             ball.dy *= -1
             ball.left(180)
-            # pong_sound()
+            pong_sound()
         elif (ball.ycor() <= -310 and ball.xcor() == player.xcor() and
                 ball.ycor() > -322):
             ball.dx = 0
             ball.dy *= -1
             ball.left(180)
-            # pong_sound()
+            pong_sound()
 
         # colisão da bola com os blocos
         if (ball.ycor() >= 0):
@@ -162,7 +172,6 @@ def on_game():
                         ball.left(180)
                         ball.dy *= 1.01
                         ball.dx *= 1.01
-                        # pong_sound()
                         '''collided = True
                         objects.matrix_generator(collided, j)
                         (lines, collum, nulls) = objects.block_printer(collided)'''

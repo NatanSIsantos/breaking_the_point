@@ -8,8 +8,8 @@ def on_game():
     game_win.screensize(1080, 720)
     game_win.bgpic("files/painel.png")
     ball = objects.draw_ball()
-    ball.dx = -1.0
-    ball.dy = -1.0
+    ball.dx = -3.0
+    ball.dy = -3.0
     player = objects.draw_player()
     (life, points, score, heart) = objects.draw_game_states()
 
@@ -31,14 +31,16 @@ def on_game():
     # game_win.onkeypress(restart, 'space')
     game_win.listen()
 
+    collided = False
     # desenhando blocos
-    objects.matrix_generator()
+    objects.matrix_generator(collided, -1)
     nulls = 0
     lines = list()
     collum = list()
-    (blocks, lines, collum, nulls) = objects.block_printer()
+    (blocks, lines, collum, nulls) = objects.block_printer(collided)
 
     while True:
+        collided = False
         ball.sety(ball.ycor()+ball.dy)
         ball.setx(ball.xcor()+ball.dx)
 
@@ -149,6 +151,10 @@ def on_game():
                         ball.dy *= 1.01
                         ball.dx *= 1.01
                         # pong_sound()
+                        collided = True
+                        objects.matrix_generator(collided, j)
+                        (blocks, lines, collum, nulls) = objects.block_printer(collided)
+                        
                 j += 1
 
         if (player.xcor() >= 300):

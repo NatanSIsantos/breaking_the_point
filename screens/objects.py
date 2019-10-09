@@ -85,30 +85,42 @@ def counter():
         counter.clear()
         counter._update()
 
-def matrix_generator():
+def matrix_generator(collided, number):
     blocks = open('files/blocks_matrix.txt', 'w')
+    blockr = open('files/blocks_matrix.txt', 'r')
     lin = 60  # núúmero de linhas
     col = 1  # núúmero de colunas
-    for _ in range(lin):
-        for _ in range(col):
-            number = randint(0, 6)
-            blocks.write(str(number))
-        blocks.write('\n')
-    blocks.close()
 
-def block_printer():
+    if collided is True:
+        linhas = blockr.readlines() # cada linha é um elemento da lista linhas
+        print(linhas[::])
+        linhas[number] = '0\n'
+        blocks.write(linhas[::])
+    elif collided is False:
+        for _ in range(lin):
+            for _ in range(col):
+                number = randint(0, 6)
+                blocks.write(str(number))
+            blocks.write('\n')
+    blocks.close()
+    blockr.close()
+
+
+def block_printer(collided):
     line = 300
     collum = -330
     blocks = open('files/blocks_matrix.txt', 'r')
     collum_list = []
     lines_list = []
     counter_null = 0
-    for _ in blocks:
 
+    for _ in blocks:
         block = turtle.Turtle()
         block.shape("square")
+        if collided is True:
+            block.clear()
         block.shapesize(1, 2)
-        block.speed(10)
+        block.speed(0)
         line_list = list(_)
         for __ in line_list:
             if __ == '\n':
@@ -154,6 +166,5 @@ def block_printer():
             if collum >= 330:
                 collum = -330
                 line -= 90
-
     blocks.close()
     return (block, lines_list[::], collum_list[::], counter_null)

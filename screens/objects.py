@@ -116,6 +116,7 @@ def block_printer(collided):
         if collided is True:
             block.clear()
         block.shapesize(1, 2)
+        block._tracer(0)
         block.speed(0)
         line_list = list(_)
         for __ in line_list:

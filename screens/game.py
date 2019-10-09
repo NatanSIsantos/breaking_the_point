@@ -8,8 +8,8 @@ def on_game():
     game_win.screensize(1080, 720)
     game_win.bgpic("files/painel.png")
     ball = objects.draw_ball()
-    ball.dx = -3.0
-    ball.dy = -3.0
+    ball.dx = -1.0
+    ball.dy = -1.0
     player = objects.draw_player()
     (life, points, score, heart) = objects.draw_game_states()
 
